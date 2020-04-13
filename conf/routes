@@ -7,3 +7,11 @@ GET     /                           controllers.HomeController.index
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# Monster Routes
+GET     /monster                    controllers.MonsterController.index(request: Request)
+GET     /monster/:id                controllers.MonsterController.indexAt(request: Request, id: Integer)
+
+POST    /monster                    controllers.MonsterController.create(request: Request)
+
+PUT     /monster/:id                controllers.MonsterController.update(request: Request, id: Integer)
