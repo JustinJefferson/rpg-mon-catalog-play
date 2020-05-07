@@ -8,6 +8,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava, PlayEbean)
 scalaVersion := "2.13.1"
 
 libraryDependencies ++= Seq(
+  jdbc,
   guice,
-  "mysql" % "mysql-connector-java" % "5.1.46",
+  "org.postgresql" % "postgresql" % "42.2.12",
 )
