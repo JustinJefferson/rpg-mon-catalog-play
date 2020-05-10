@@ -1,11 +1,12 @@
 package utils;
 
+import models.Family;
 import models.Monster;
 import play.data.DynamicForm;
 
 public class MonsterBuilder {
 
-    private Monster monster;
+    private final Monster monster;
 
     public MonsterBuilder() {
         monster = new Monster();
@@ -24,8 +25,8 @@ public class MonsterBuilder {
 
         monster.setNum(form.get("num") == null ? null : Integer.valueOf(form.get("num")));
         monster.setDescription(form.get("description"));
-        monster.setFamilyId1(form.get("familyId1") == null ? null : Integer.valueOf(form.get("familyId1")));
-        monster.setFamilyId2(form.get("familyId2") == null ? null : Integer.valueOf(form.get("familyId2")));
+        monster.setFamily1(form.get("family1") == null ? null : Family.FIND.query().where().eq("name", form.get("family1")).findOne());
+        monster.setFamily2(form.get("family2") == null ? null : Family.FIND.query().where().eq("name", form.get("family2")).findOne());
         monster.setPreEvolutionId(form.get("num") == null ? null : Integer.valueOf(form.get("preEvolutionId")));
         monster.setHp(form.get("hp") == null ? null : Integer.valueOf(form.get("hp")));
         monster.setSp(form.get("sp") == null ? null : Integer.valueOf(form.get("sp")));
@@ -43,8 +44,8 @@ public class MonsterBuilder {
         this.monster.setName(monster.getName());
         this.monster.setNum(monster.getNum());
         this.monster.setDescription(monster.getDescription());
-        this.monster.setFamilyId1(monster.getFamilyId1());
-        this.monster.setFamilyId2(monster.getFamilyId2());
+        this.monster.setFamily1(monster.getFamily1());
+        this.monster.setFamily2(monster.getFamily2());
         this.monster.setPreEvolutionId(monster.getPreEvolutionId());
         this.monster.setHp(monster.getHp());
         this.monster.setSp(monster.getSp());
@@ -73,13 +74,13 @@ public class MonsterBuilder {
         return this;
     }
 
-    public MonsterBuilder appendFamilyId1(Integer id) {
-        monster.setFamilyId1(id);
+    public MonsterBuilder appendFamily1(Family family) {
+        monster.setFamily1(family);
         return this;
     }
 
-    public MonsterBuilder appendFamilyId2(Integer id) {
-        monster.setFamilyId2(id);
+    public MonsterBuilder appendFamily2(Family family) {
+        monster.setFamily2(family);
         return this;
     }
 

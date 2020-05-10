@@ -4,6 +4,8 @@ import io.ebean.Finder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Monster extends GenericModel {
@@ -14,10 +16,14 @@ public class Monster extends GenericModel {
     private Integer num;
     private String description;
 
+    @ManyToOne(optional = false)
     @Column(name = "family_id_1")
-    private Integer familyId1;
+    private Family family1;
+
+    @ManyToOne
     @Column(name = "family_id_2")
-    private Integer familyId2;
+    private Family family2;
+
     @Column(name = "pre_evolution_id")
     private Integer preEvolutionId;
 
@@ -33,12 +39,12 @@ public class Monster extends GenericModel {
 
     public Monster() {}
 
-    public Monster(String name, Integer num, String description, Integer familyId1, Integer familyId2, Integer preEvolutionId, Integer hp, Integer sp, Integer atk, Integer def, Integer strength, Integer dexterity, Integer intellect, Integer agility, Integer luck) {
+    public Monster(String name, Integer num, String description, Family family1, Family family2, Integer preEvolutionId, Integer hp, Integer sp, Integer atk, Integer def, Integer strength, Integer dexterity, Integer intellect, Integer agility, Integer luck) {
         this.name = name;
         this.num = num;
         this.description = description;
-        this.familyId1 = familyId1;
-        this.familyId2 = familyId2;
+        this.family1 = family1;
+        this.family2 = family2;
         this.preEvolutionId = preEvolutionId;
         this.hp = hp;
         this.sp = sp;
@@ -75,20 +81,20 @@ public class Monster extends GenericModel {
         this.description = description;
     }
 
-    public Integer getFamilyId1() {
-        return familyId1;
+    public Family getFamily1() {
+        return family1;
     }
 
-    public void setFamilyId1(Integer familyId1) {
-        this.familyId1 = familyId1;
+    public void setFamily1(Family family1) {
+        this.family1 = family1;
     }
 
-    public Integer getFamilyId2() {
-        return familyId2;
+    public Family getFamily2() {
+        return family2;
     }
 
-    public void setFamilyId2(Integer familyId2) {
-        this.familyId2 = familyId2;
+    public void setFamily2(Family family2) {
+        this.family2 = family2;
     }
 
     public Integer getPreEvolutionId() {

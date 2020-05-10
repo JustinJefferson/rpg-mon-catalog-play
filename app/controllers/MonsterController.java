@@ -47,4 +47,9 @@ public class MonsterController extends Controller {
         monster.save();
         return ok(monster.getId().toString());
     }
+
+    public Result delete(Http.Request request, Integer id) {
+        Monster.FIND.deleteById(id);
+        return Monster.FIND.byId(id) == null ? ok() : badRequest();
+    }
 }
